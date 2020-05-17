@@ -1,0 +1,26 @@
+<annotation>
+	<folder>13</folder>
+	<filename>13Heat_map_8.jpg</filename>
+	<path>G:\Akilesh\13\13Heat_map_8.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>227</width>
+		<height>227</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>High</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>107</xmin>
+			<ymin>103</ymin>
+			<xmax>144</xmax>
+			<ymax>143</ymax>
+		</bndbox>
+	</object>
+</annotation>

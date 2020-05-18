@@ -1,0 +1,19 @@
+item {
+    id: 1
+    name: 'Critical'
+}
+
+item {
+    id: 2
+    name: 'High'
+}
+
+item {
+    id: 3
+    name: 'Less'
+}
+
+item {
+    id: 4
+    name: 'Medium'
+}

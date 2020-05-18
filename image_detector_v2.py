@@ -283,16 +283,61 @@ class Ui_MainWindow(QObject):
     
     @pyqtSlot()
     def image_input(self):
-        print("Image Input")
+        print("function_called")
+        try:
+            test_record_fname = './data/annotations/test.record'
+            train_record_fname = './data/annotations/train.record'
+            label_map_pbtxt_fname = './data/annotations/label_map.pbtxt'
+            pb_fname = './assets/inference_graphs/engie.pb'
+            IMAGE_SIZE = (12, 8)
+            PATH_TO_CKPT = pb_fname
+            PATH_TO_LABELS = label_map_pbtxt_fname
+            num_classes = self.get_num_classes(label_map_pbtxt_fname)
+            assert os.path.isfile(pb_fname)
+            assert os.path.isfile(PATH_TO_LABELS)
+            detection_graph = tf.Graph()
+            with detection_graph.as_default():
+                od_graph_def = tf.compat.v1.GraphDef()
+                with tf.io.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
+                    serialized_graph = fid.read()
+                    od_graph_def.ParseFromString(serialized_graph)
+                    tf.import_graph_def(od_graph_def, name='')
+            label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
+            categories = label_map_util.convert_label_map_to_categories(
+            label_map, max_num_classes=num_classes, use_display_name=True)
+            category_index = label_map_util.create_category_index(categories) 
+            image_path = self.file_path.text()
+            image = Image.open(image_path)
+            # the array based representation of the image will be used later in order to prepare the
+            # result image with boxes and labels on it.
+            image_np = self.load_image_into_numpy_array(image)
+            # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
+            image_np_expanded = np.expand_dims(image_np, axis=0)
+            # Actual detection.
+            output_dict = self.run_inference_for_single_image(image_np, detection_graph)
+            # Visualization of the results of a detection.
+            vis_util.visualize_boxes_and_labels_on_image_array(
+                image_np,
+                output_dict['detection_boxes'],
+                output_dict['detection_classes'],
+                output_dict['detection_scores'],
+                category_index,
+                instance_masks=output_dict.get('detection_masks'),
+                use_normalized_coordinates=True,
+                line_thickness=10) 
+            image_np= cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)    
+            cv2.imshow(image_path.split('/')[-1],image_np)
+        except Exception as e:
+            print("Please select another image because the current image gives an irregular array shape",e)
    
     
 
     @pyqtSlot()
     def process(self):
         if str(self.file_path.text()) =="LiveCam":
-                self.live_cam()  
-        elif str(self.file_path.text()) =="Image":
-                self.image_input()          
+            self.live_cam()  
+        else:
+            self.image_input()          
             
                 
                                                               

@@ -298,6 +298,7 @@ class Ui_MainWindow(QObject):
             detection_graph = tf.Graph()
             with detection_graph.as_default():
                 od_graph_def = tf.compat.v1.GraphDef()
+                print(od_graph_def)
                 with tf.io.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
                     serialized_graph = fid.read()
                     od_graph_def.ParseFromString(serialized_graph)
@@ -308,6 +309,7 @@ class Ui_MainWindow(QObject):
             category_index = label_map_util.create_category_index(categories) 
             image_path = self.file_path.text()
             image = Image.open(image_path)
+
             # the array based representation of the image will be used later in order to prepare the
             # result image with boxes and labels on it.
             image_np = self.load_image_into_numpy_array(image)
@@ -316,7 +318,7 @@ class Ui_MainWindow(QObject):
             # Actual detection.
             output_dict = self.run_inference_for_single_image(image_np, detection_graph)
             # Visualization of the results of a detection.
-            vis_util.visualize_boxes_and_labels_on_image_array(
+            image_res,class_name = vis_util.visualize_boxes_and_labels_on_image_array(
                 image_np,
                 output_dict['detection_boxes'],
                 output_dict['detection_classes'],
@@ -327,6 +329,8 @@ class Ui_MainWindow(QObject):
                 line_thickness=10) 
             image_np= cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)    
             cv2.imshow(image_path.split('/')[-1],image_np)
+            print("Class Name",class_name)
+           
         except Exception as e:
             print("Please select another image because the current image gives an irregular array shape",e)
    

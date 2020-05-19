@@ -220,7 +220,7 @@ def draw_bounding_box_on_image(image,
     text_bottom = top
   else:
     text_bottom = bottom + total_display_str_height
-  # Reverse list and print from bottom to top.
+  # Reverse list and 
   for display_str in display_str_list[::-1]:
     text_width, text_height = font.getsize(display_str)
     margin = np.ceil(0.05 * text_height)
@@ -792,10 +792,12 @@ def visualize_boxes_and_labels_on_image_array(
   box_to_instance_boundaries_map = {}
   box_to_keypoints_map = collections.defaultdict(list)
   box_to_track_ids_map = {}
+  class_name = "Unclassified"
   if not max_boxes_to_draw:
     max_boxes_to_draw = boxes.shape[0]
   for i in range(min(max_boxes_to_draw, boxes.shape[0])):
     if scores is None or scores[i] > min_score_thresh:
+      
       box = tuple(boxes[i].tolist())
       if instance_masks is not None:
         box_to_instance_masks_map[box] = instance_masks[i]
@@ -806,14 +808,20 @@ def visualize_boxes_and_labels_on_image_array(
       if track_ids is not None:
         box_to_track_ids_map[box] = track_ids[i]
       if scores is None:
+        
         box_to_color_map[box] = groundtruth_box_visualization_color
       else:
+        
         display_str = ''
         if not skip_labels:
+          
           if not agnostic_mode:
+            
             if classes[i] in six.viewkeys(category_index):
+              
               class_name = category_index[classes[i]]['name']
             else:
+              
               class_name = 'N/A'
             display_str = str(class_name)
         if not skip_scores:

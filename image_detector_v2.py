@@ -123,13 +123,13 @@ def image_input():
                 image_np= cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
                 if class_name == 'Critical':
                     print('Critical',image_name)
-                    cv2.imwrite('./data/images/critical/image_'+str(i)+'.jpg',image_np)
+                    cv2.imwrite('./web/critical/image_'+str(i)+'.jpg',image_np)
                 elif class_name == 'High':
                     print('High',image_name)
-                    cv2.imwrite('./data/images/high/image_'+str(i)+'.jpg',image_np)
+                    cv2.imwrite('./web/high/image_'+str(i)+'.jpg',image_np)
                 elif class_name == 'Less':
                     print('less',image_name)
-                    cv2.imwrite('./data/images/less/image_'+str(i)+'.jpg',image_np)
+                    cv2.imwrite('./web/less/image_'+str(i)+'.jpg',image_np)
                 else:
                     pass
 

@@ -181,46 +181,6 @@
           </div>
         </div>
         <div class="container">
-          <div class="card">
-         <div class="row">
-            <div class="col-sm">
-              <div class="card card-stats">
-                <div class="card-body ">
-                  <div class="row">
-                    <div class="col-7 col-md-8">
-                      <p class="card-category">Critical</p>
-                      <img id="#Critical" src="./output_images/critical.jpg">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="card card-stats">
-                <div class="card-body ">
-                  <div class="row">
-                    <div class="col-7 col-md-8">
-                      <p class="card-category">High</p>
-                      <img id="#High" src="./output_images/high.jpg">
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="card card-stats">
-                <div class="card-body ">
-                  <div class="row">
-                    <div class="col-7 col-md-8">
-                      <p class="card-category">Less</p>
-                      <img id='#Less' src="./output_images/less.jpg">
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
         <div id="demo" class="carousel slide" data-ride="carousel">
 
           <!-- Indicators -->
@@ -233,13 +193,13 @@
           <!-- The slideshow -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="./output_images/less.jpg" alt="Los Angeles" width="1100" height="500">
+              <img id="#Less" src="./output_images/less.jpg" alt="Los Angeles" width="1100" height="500">
             </div>
             <div class="carousel-item">
-              <img src="./output_images/high.jpg" alt="Chicago" width="1100" height="500">
+              <img id="#High" src="./output_images/high.jpg" alt="Chicago" width="1100" height="500">
             </div>
             <div class="carousel-item">
-              <img src="./output_images/critical.jpg" alt="New York" width="1100" height="500">
+              <img id="#Critical" src="./output_images/critical.jpg" alt="New York" width="1100" height="500">
             </div>
           </div>
           
@@ -279,9 +239,9 @@
         eel.call_from_html()(a => {
             console.log(a);
         });
-        // $("#Critical").attr("src","../data/images/critical/image_1.jpg");
-        // $("#High").attr("src","../data/images/high/image_0.jpg");
-        // $("#Less").attr("src","../data/images/less/image_2.jpg");
+        $("#Critical").attr("src","./critical/image_1.jpg");
+        $("#High").attr("src","./high/image_0.jpg");
+        $("#Less").attr("src","./less/image_2.jpg");
 
 
     });

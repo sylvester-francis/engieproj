@@ -184,19 +184,17 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <form action="{{ url_for('hello') }}" enctype="multipart/form-data" method="post">
+              <!-- <form action="{{ url_for('hello') }}" enctype="multipart/form-data" method="post">
                 {{ dropzone.create() }}
                <button type="submit" id="Upload" class="btn-info">Upload Images</button>
               </form>
               {{ dropzone.load_js() }}
-              {{ dropzone.config() }}
+              {{ dropzone.config() }} -->
               <br><br><br>
               <div style="text-align: center;">
                 <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
                 <span id="status"></span>
                 <h1 id="finalMessage"></h1>
-               <!-- Add Button with event Click
-                with this event start your progressbar with your function -->
                 <form action="{{ url_for('image_input') }}" method="post">
                   <button type="submit" onclick='start(0)' id="Process" class="btn-info">Process Images</button>
                 </form>
